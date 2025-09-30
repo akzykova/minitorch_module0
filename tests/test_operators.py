@@ -150,13 +150,13 @@ def test_distribute(x: float, y: float, z: float) -> None:
 
 
 @pytest.mark.task0_2
-@given(small_floats)
-def test_other(x: float) -> None:
+@given(small_floats, small_floats, small_floats)
+def test_other(x: float, y: float, z: float) -> None:
     """Write a test that ensures some other property holds for your functions."""
-    exp_res = exp(x)
-    log_res = log(exp_res)
+    left = add(add(x, y), z)
+    right = add(x, add(y, z))
     
-    assert_close(log_res, x)
+    assert_close(left, right)
 
 
 # ## Task 0.3  - Higher-order functions
